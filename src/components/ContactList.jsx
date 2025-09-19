@@ -1,6 +1,8 @@
+import styles from './ContactList.module.css'
+
 export default function ContactList() {
   return (
-    <div className="ContactList">
+    <div className={styles.contactList}>
       <h1>
         <i class="bi bi-person"></i> Agenda de Contatos
       </h1>
