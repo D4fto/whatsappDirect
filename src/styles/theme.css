@@ -1,0 +1,60 @@
+/*
+  Paleta de cores em tons de cinza para backgrounds, bordas e textos secundários
+  Quanto maior o número, mais escuro o tom
+*/
+:root {
+  --gray-100: #f8fafc; /* Cinza quase branco */
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
+  --gray-600: #475569;
+  --gray-700: #334155;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a; /* Cinza mais escuro */
+
+  /*
+    Cores principais da identidade visual
+    Usadas para botões, destaques e elementos interativos
+  */
+  --primary-light: #4ade80; /* Verde claro */
+  --primary: #22c55e;       /* Verde principal */
+  --primary-dark: #15803d;  /* Verde mais escuro */
+
+  /*
+    Cores para links e seus estados
+  */
+  --link-color: #16a34a;  /* Link padrão */
+  --link-hover: #15803d;  /* Link ao passar o mouse */
+
+  /*
+    Cores de feedback para status e mensagens
+  */
+  --success: #22c55e; /* Sucesso */
+  --warning: #eab308; /* Aviso */
+  --error: #dc2626;   /* Erro */
+  --info: #0284c7;    /* Informação */
+
+  /*
+    Cores de texto sobre fundos coloridos
+    Garantem contraste e acessibilidade
+  */
+  --text-over-primary: #ffffff;
+  --text-over-primary-dark: #f1f5f9;
+  --text-over-primary-light: #0f172a;
+  --text-over-success: #0f172a;
+  --text-over-warning: #0f172a;
+  --text-over-error: #ffffff;
+  --text-over-info: #ffffff;
+
+  /*
+    Cores padrão para textos
+  */
+  --text-default: var(--gray-900); /* Texto principal */
+  --text-muted: var(--gray-400);  /* Texto secundário/desabilitado */
+
+  /*
+    Cores para elementos desabilitados
+  */
+  --disabled: var(--gray-300); /* Fundo de elemento desabilitado */
+}
