@@ -6,7 +6,7 @@ import ContactList from "./components/ContactList";
 
 export default function App (){
   return <>
-    <h1>WhatsHub</h1>
+    <h1><i className="bi bi-telephone"></i> WhatsHub</h1>
     <h2>O jeito Mais rápido de iniciar conversas no WhatsApp. Gere links instantâneos e mantenha seus contatos organizados</h2>
     <div>
       <LinkGenerator/>
