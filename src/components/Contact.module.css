@@ -1,0 +1,31 @@
+.contact{
+  display: flex;
+  background-color: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  border-radius: .5rem;
+  padding: 1.5rem;
+  gap: .5rem;
+}
+
+.nameAndNumberContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.contact button{
+  background-color: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  font-size: 1.6rem;
+  padding: 0 1.5rem;
+  border-radius: .5rem;
+  transition: background-color .5s;
+}
+
+.contact button:hover{
+  background-color: var(--gray-200);
+}
+
+.number{
+  color: var(--text-secundary);
+}

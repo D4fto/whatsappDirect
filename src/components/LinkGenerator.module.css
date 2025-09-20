@@ -1,19 +1,96 @@
 .linkGenerator{
-  background-color: var(--white);
+  font-size: 1.6rem;
+}
+
+.linkGenerator>form{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border: 1px solid var(--gray-200);
-  border-radius: 1rem;
+  justify-content: space-evenly;
+  gap: 1.5rem;
   height: 100%;
+}
+
+.linkGenerator textarea{
+  height: 100%;
+}
+
+.linkGenerator h1{
+  font-size: 2.4rem;
+}
+
+.linkGenerator h1 i{
+  color: var(--primary);
 }
 
 .button{
   background-image: linear-gradient(45deg, var(--primary), var(--primary-light));
-  border: none;
-  padding: 1rem;
+  border: 1px solid transparent;
+  padding: 1.5rem;
   width: 100%;
   border-radius: .5rem;
   color: var(--white);
+  font-size: 1.6rem;
+  background-color: var(--primary);
+  transition: background-color .5s, color .5s;
+}
+
+.linkContainer{
+  background-color: var(--gray-100);
+  padding: 1.5rem;
+  border: 1px solid var(--gray-200);
+  border-radius: .5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-shrink: 2;
+}
+
+.linkContainer input{
+  background-color: var(--white);
+}
+
+.iconInput{
+  position: relative;
+  margin-top: 1rem;
+}
+
+.iconInput i{
+  position: absolute;
+  top: 50%;
+  left: 1.5rem;
+  transform: translateY(-50%);
+}
+
+.iconInput input{
+  margin-top: 0;
+  padding-left: 4rem;
+}
+
+.showLinkContainer{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.showLinkContainer input{
+  margin-top: 0;
+}
+
+.showLinkContainer button{
+  background-color: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 0 1.5rem;
+  border-radius: .5rem;
+  transition: background-color .5s;
+}
+
+.showLinkContainer button:hover{
+  background-color: var(--gray-200);
+}
+
+.button:hover{
+  border: 1px solid var(--primary);
+  background-image: none;
+  color: var(--text-color);
+  background-color: var(--white);
 }

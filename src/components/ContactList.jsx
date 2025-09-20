@@ -1,15 +1,19 @@
-import styles from './ContactList.module.css'
+import styles from "./ContactList.module.css";
+import Contact from "./Contact";
 
 export default function ContactList() {
   return (
-    <div className={styles.contactList}>
+    <div className={`card ${styles.contactList}`}>
       <h1>
         <i class="bi bi-person"></i> Agenda de Contatos
       </h1>
+
+      {/* Form para criação do contatp */}
       <form action="">
-        <div>
+        <div className={styles.nameAndNumberContainer}>
           <div>
             <label htmlFor="contactName">Nome</label>
+            {/* Input para o nome do contato*/}
             <input
               type="text"
               name="contactName"
@@ -19,6 +23,7 @@ export default function ContactList() {
           </div>
           <div>
             <label htmlFor="contactNumber">Número</label>
+            {/* Input para o número de telefone */}
             <input
               type="text"
               name="contactNumber"
@@ -27,23 +32,14 @@ export default function ContactList() {
             />
           </div>
         </div>
-        <button type="submit">
+        <button type="submit" className={styles.button}>
           <i class="bi bi-person"></i> Salvar na Agenda
         </button>
       </form>
       <h2>Seus contatos (1)</h2>
-      <div>
-        <div>
-          <div>
-            <p>Joao</p>
-            <p>(44) 91234-1234</p>
-          </div>
-          <button>Mensagem</button>
-          <button>Editar</button>
-          <button>
-            <i className="bi bi-trash3"></i>
-          </button>
-        </div>
+      {/* Lista de contatos */}
+      <div className={styles.contactsContainer}>
+        <Contact id={1} name={"Joao"} phoneNumber={"(44) 9886-1234"} />
       </div>
     </div>
   );

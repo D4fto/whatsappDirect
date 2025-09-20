@@ -1,10 +1,51 @@
 .contactList{
-  background-color: var(--white);
+  font-size: 1.6rem;
+}
+
+.contactList h1{
+  font-size: 2.4rem;
+}
+
+.contactList h1 i{
+  color: var(--primary);
+}
+
+.contactList h2{
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contactList > form{
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
+}
+
+.nameAndNumberContainer{
+  display: flex;
+  gap: 1.5rem;
+}
+
+.button{
+  background-color: var(--gray-100);
   border: 1px solid var(--gray-200);
-  border-radius: 1rem;
+  padding: 1.5rem;
+  width: 100%;
+  border-radius: .5rem;
+  font-size: 1.6rem;
+  transition: background-color .5s;
+}
+
+.button:hover{
+  background-color: var(--gray-200);
+}
+
+.contactsContainer{
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
