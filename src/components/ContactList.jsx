@@ -1,11 +1,12 @@
 import styles from "./ContactList.module.css";
 import Contact from "./Contact";
 
+
 export default function ContactList() {
   return (
     <div className={`card ${styles.contactList}`}>
       <h1>
-        <i class="bi bi-person"></i> Agenda de Contatos
+        <i className="bi bi-person"></i> Agenda de Contatos
       </h1>
 
       {/* Form para criação do contatp */}

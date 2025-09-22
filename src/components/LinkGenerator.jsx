@@ -78,7 +78,7 @@ export default function LinkGenerator() {
             disabled
           />
           {/* Botão para copiar o link */}
-          <button id="copyLink">
+          <button id="copyLink" onClick={navigator.clipboard.writeText(link)}>
             <i className="bi bi-copy"></i>
           </button>
         </div>
