@@ -4,10 +4,27 @@ import formatPhone from "../utils/formatPhone";
 
 export default function LinkGenerator() {
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [link, setLink] = useState("");
 
   // função para tratamento do input de telefone
   function handlePhoneInput(e) {
     setPhoneNumber(formatPhone(e.target.value));
+  }
+  function generateLink(e){
+    e.preventDefault()
+    let number = phoneNumber.replace(/\D/g, '')
+    let encodedMessage = encodeURIComponent(message)
+
+    if (number.length === 0){
+      return
+    }
+    if (encodedMessage.length === 0){
+      setLink(`https://wa.me/55${number}`)
+      return
+    }
+    setLink(`https://wa.me/55${number}?text=${encodedMessage}`)
+
   }
 
   return (
@@ -16,7 +33,7 @@ export default function LinkGenerator() {
         <i className="bi bi-chat"></i> Gerador de Links
       </h1>
       {/* Form para a geração do link */}
-      <form action="">
+      <form action="" onSubmit={generateLink}>
         <div>
           <label htmlFor="phoneNumber">Número do WhatsApp</label>
           <br />
@@ -30,6 +47,7 @@ export default function LinkGenerator() {
               placeholder="(44) 91234-1234"
               value={phoneNumber}
               onChange={(e) => handlePhoneInput(e)}
+              required
             />
           </div>
         </div>
@@ -40,6 +58,8 @@ export default function LinkGenerator() {
             name="message"
             id="message"
             placeholder="Digite sua mensagem aqui..."
+            value={message}
+            onChange={e =>setMessage(e.target.value)}
           ></textarea>
         </div>
         <button type="submit" className={styles.button}>
@@ -54,6 +74,7 @@ export default function LinkGenerator() {
             type="text"
             id="whatsappLink"
             placeholder="https://wa.me/55449123..."
+            value={link}
             disabled
           />
           {/* Botão para copiar o link */}
