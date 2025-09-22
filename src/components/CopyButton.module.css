@@ -1,0 +1,11 @@
+.copyButton{
+  position: relative;
+}
+
+.message{
+  position: absolute;
+  right: 0;
+  bottom: 125%;
+  width: max-content;
+  color: var(--primary);
+}

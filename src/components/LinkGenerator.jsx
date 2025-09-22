@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./LinkGenerator.module.css";
 import formatPhone from "../utils/formatPhone";
+import CopyButton from "./CopyButton";
 
 export default function LinkGenerator() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -11,11 +12,16 @@ export default function LinkGenerator() {
   function handlePhoneInput(e) {
     setPhoneNumber(formatPhone(e.target.value));
   }
+
+  // Função para gerar o link de envio ao whatsapp
   function generateLink(e){
     e.preventDefault()
+    // Deixa apenas os números do telefone
     let number = phoneNumber.replace(/\D/g, '')
+    // Codifica a mensagem para ser usada na url
     let encodedMessage = encodeURIComponent(message)
 
+    //se o numero de telefone estiver vazio, para a função
     if (number.length === 0){
       return
     }
@@ -78,9 +84,7 @@ export default function LinkGenerator() {
             disabled
           />
           {/* Botão para copiar o link */}
-          <button id="copyLink" onClick={navigator.clipboard.writeText(link)}>
-            <i className="bi bi-copy"></i>
-          </button>
+          <CopyButton/>
         </div>
         {/* Botão para redirecionar para o link gerado */}
         <button className={styles.button}>
