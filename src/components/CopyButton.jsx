@@ -1,10 +1,14 @@
 import { useState } from "react";
 import styles from "./CopyButton.module.css";
 
-export default function CopyButton(str, message = <span className={styles.message}>Copiado com sucesso</span>) {
+export default function CopyButton({str, message = <span className={styles.message}>Copiado com sucesso</span>}) {
   const [messageVisible, setMessageVisible] = useState(false)
 
   async function copy(){
+    // Se a string for vazia não copia
+    if(str.length === 0){
+      return
+    }
     // Copia o texto para a área de transferência
     await navigator.clipboard.writeText(str)
     if(messageVisible){

@@ -84,7 +84,7 @@ export default function LinkGenerator() {
             disabled
           />
           {/* Botão para copiar o link */}
-          <CopyButton/>
+          <CopyButton str={link}/>
         </div>
         {/* Botão para redirecionar para o link gerado */}
         <button className={styles.button}>
