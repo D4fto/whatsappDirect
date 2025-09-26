@@ -21,7 +21,7 @@ export default function LinkGenerator() {
     // Codifica a mensagem para ser usada na url
     let encodedMessage = encodeURIComponent(message)
 
-    //se o numero de telefone estiver vazio, para a função
+    //se o numero de telefone for menor que 10, para a função
     if (number.length < 10){
       return
     }

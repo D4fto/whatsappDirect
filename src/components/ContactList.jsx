@@ -7,12 +7,17 @@ import supabase from "../services/supabase";
 export default function ContactList() {
   const [contactName, setContactName] = useState('')
   const [contactNumber, setContactNumber] = useState('')
+
+  //Função para enviar o contato para o supabase
   function submitContact (e){
     e.preventDefault() 
+    // Deixa apenas os números do telefone
     let number = contactNumber.replace(/\D/g,'')
+    // Verifica se os campos estão válidos
     if (number.length < 10 || contactName.length===0){
       return
     }
+    // Cria o contato no supabase
     supabase.createContact(contactName, number)
 
   }
@@ -53,6 +58,7 @@ export default function ContactList() {
             />
           </div>
         </div>
+        {/* Botão pra salvar o contato na agenda */}
         <button type="submit" className={styles.button} disabled={contactNumber.replace(/\D/g,'').length<10 || contactName.length===0}>
           <i class="bi bi-person"></i> Salvar na Agenda
         </button>
