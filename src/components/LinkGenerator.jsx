@@ -87,7 +87,7 @@ export default function LinkGenerator() {
           <CopyButton str={link}/>
         </div>
         {/* Botão para redirecionar para o link gerado */}
-        <button className={styles.button}>
+        <button onClick={()=>{window.open(link,'_blank')}} disabled ={link.length===0} className={styles.button}>
           <i className="bi bi-chat"></i> Abrir WhatsApp
         </button>
       </div>
