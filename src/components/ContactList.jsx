@@ -10,7 +10,7 @@ export default function ContactList() {
   function submitContact (e){
     e.preventDefault() 
     let number = contactNumber.replace(/\D/g,'')
-    if (number.length===0 || contactName.length===0){
+    if (number.length < 10 || contactName.length===0){
       return
     }
     supabase.createContact(contactName, number)
@@ -53,7 +53,7 @@ export default function ContactList() {
             />
           </div>
         </div>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.button} disabled={contactNumber.replace(/\D/g,'').length<10 || contactName.length===0}>
           <i class="bi bi-person"></i> Salvar na Agenda
         </button>
       </form>

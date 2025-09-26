@@ -71,7 +71,10 @@ input, textarea{
 button{
     cursor: pointer;
 }
-
+button:disabled{
+    cursor: not-allowed;
+    filter: saturate(50%) brightness(80%);
+  }
 label{
     font-weight: bold;
 }

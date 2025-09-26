@@ -22,7 +22,7 @@ export default function LinkGenerator() {
     let encodedMessage = encodeURIComponent(message)
 
     //se o numero de telefone estiver vazio, para a função
-    if (number.length === 0){
+    if (number.length < 10){
       return
     }
     if (encodedMessage.length === 0){
@@ -68,7 +68,7 @@ export default function LinkGenerator() {
             onChange={e =>setMessage(e.target.value)}
           ></textarea>
         </div>
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.button} disabled={phoneNumber.replace(/\D/g, '').length<10}>
           <i className="bi bi-chat"></i> Preparar Mensagem
         </button>
       </form>
