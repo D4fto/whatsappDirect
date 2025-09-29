@@ -1,15 +1,30 @@
 import styles from "./ContactList.module.css";
 import Contact from "./Contact";
 import formatPhone from "../utils/formatPhone";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import supabase from "../services/supabase";
+
 
 export default function ContactList() {
   const [contactName, setContactName] = useState('')
   const [contactNumber, setContactNumber] = useState('')
+  const [contacts, setContacts] = useState([])
+
+  async function fetchContacts() {
+    const { data, error } = await supabase.readContacts()
+    if (error) {
+      console.error(error)
+    }else{
+      setContacts(data)
+    }
+    
+  }
+  useEffect(()=>{
+    fetchContacts()
+  },[])
 
   //Função para enviar o contato para o supabase
-  function submitContact (e){
+  async function submitContact (e){
     e.preventDefault() 
     // Deixa apenas os números do telefone
     let number = contactNumber.replace(/\D/g,'')
@@ -18,8 +33,10 @@ export default function ContactList() {
       return
     }
     // Cria o contato no supabase
-    supabase.createContact(contactName, number)
-
+    await supabase.createContact(contactName, number)
+    setContactNumber('')
+    setContactName('')
+    await fetchContacts()
   }
 
   return (
@@ -63,10 +80,15 @@ export default function ContactList() {
           <i class="bi bi-person"></i> Salvar na Agenda
         </button>
       </form>
-      <h2>Seus contatos (1)</h2>
+      <h2>Seus contatos ({contacts.length})</h2>
       {/* Lista de contatos */}
       <div className={styles.contactsContainer}>
-        <Contact id={1} name={"Joao"} phoneNumber={"(44) 9886-1234"} />
+        {
+          contacts.map((e)=>{
+            return <Contact id={e.id} name={e.name} phoneNumber={e.phone_number} />
+          })
+        }
+        
       </div>
     </div>
   );
