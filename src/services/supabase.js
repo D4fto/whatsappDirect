@@ -18,5 +18,22 @@ async function readContacts(){
     .select() 
     return({data, error})
 }
+//função para deletar contatos
+async function deleteContact(id){
+    const { error } = await supabase
+    .from('contacts')
+    .delete()
+    .eq('id', id)
+    return(error)
+}
+//função para a leitura de contatos
+async function updateContact(id, query){
+    const { error } = await supabase
+    .from('contacts')
+    .update(query)
+    .eq('id', id)
+     
+    return(error)
+}
 
-export default {createContact, readContacts}
+export default {createContact, readContacts, deleteContact, updateContact}

@@ -85,7 +85,7 @@ export default function ContactList() {
       <div className={styles.contactsContainer}>
         {
           contacts.map((e)=>{
-            return <Contact id={e.id} name={e.name} phoneNumber={e.phone_number} />
+            return <Contact id={e.id} name={e.name} phoneNumber={e.phone_number} fetchContacts={fetchContacts}/>
           })
         }
         
