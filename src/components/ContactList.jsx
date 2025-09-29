@@ -77,7 +77,7 @@ export default function ContactList() {
         </div>
         {/* Botão pra salvar o contato na agenda */}
         <button type="submit" className={styles.button} disabled={contactNumber.replace(/\D/g,'').length<10 || contactName.length===0}>
-          <i class="bi bi-person"></i> Salvar na Agenda
+          <i className="bi bi-person"></i> Salvar na Agenda
         </button>
       </form>
       <h2>Seus contatos ({contacts.length})</h2>

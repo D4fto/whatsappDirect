@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { LinkGeneratorContext } from "../contexts/LinkGeneratorContext";
 import styles from "./LinkGenerator.module.css";
 import formatPhone from "../utils/formatPhone";
 import CopyButton from "./CopyButton";
 
 export default function LinkGenerator() {
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const { phoneNumber, setPhoneNumber } = useContext(LinkGeneratorContext)
   const [message, setMessage] = useState("");
   const [link, setLink] = useState("");
 
