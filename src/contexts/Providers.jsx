@@ -1,10 +1,13 @@
 import { LinkGeneratorProvider } from "./LinkGeneratorContext";
+import { ContactListProvider } from "./ContactListContext";
 
 export function Providers({ children }) {
   return (
-    <LinkGeneratorProvider>
-      {children}
-    </LinkGeneratorProvider>
+    <ContactListProvider>
+      <LinkGeneratorProvider>
+        {children}
+      </LinkGeneratorProvider>
+    </ContactListProvider>
 
   );
 }

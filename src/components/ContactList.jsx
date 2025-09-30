@@ -1,27 +1,17 @@
 import styles from "./ContactList.module.css";
 import Contact from "./Contact";
 import formatPhone from "../utils/formatPhone";
-import { useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import supabase from "../services/supabase";
+import { ContactListContext } from "../contexts/ContactListContext";
 
 
 export default function ContactList() {
-  const [contactName, setContactName] = useState('')
-  const [contactNumber, setContactNumber] = useState('')
-  const [contacts, setContacts] = useState([])
-
-  async function fetchContacts() {
-    const { data, error } = await supabase.readContacts()
-    if (error) {
-      console.error(error)
-    }else{
-      setContacts(data)
-    }
-    
-  }
+  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId } = useContext(ContactListContext)
+  
   useEffect(()=>{
     fetchContacts()
-  },[])
+  },[fetchContacts])
 
   //Função para enviar o contato para o supabase
   async function submitContact (e){
@@ -32,10 +22,20 @@ export default function ContactList() {
     if (number.length < 10 || contactName.length===0){
       return
     }
-    // Cria o contato no supabase
-    await supabase.createContact(contactName, number)
+    if(contactFormState === "creating"){
+      // Cria o contato no supabase
+      await supabase.createContact(contactName, number)
+    } else if(contactFormState === "editing"){
+      // Edita o contato no supabase
+      if (contactId===-1){
+        return
+      }
+      await supabase.updateContact(contactId, {name: contactName, phone_number: number})
+    }
     setContactNumber('')
     setContactName('')
+    setContactId(-1)
+    setContactFormState("creating")
     await fetchContacts()
   }
 
@@ -45,7 +45,7 @@ export default function ContactList() {
         <i className="bi bi-person"></i> Agenda de Contatos
       </h1>
 
-      {/* Form para criação do contatp */}
+      {/* Form para criação do contato */}
       <form onSubmit={submitContact} action="">
         <div className={styles.nameAndNumberContainer}>
           <div>
@@ -77,7 +77,7 @@ export default function ContactList() {
         </div>
         {/* Botão pra salvar o contato na agenda */}
         <button type="submit" className={styles.button} disabled={contactNumber.replace(/\D/g,'').length<10 || contactName.length===0}>
-          <i className="bi bi-person"></i> Salvar na Agenda
+          <i className="bi bi-person"></i> {contactFormState === "creating" ? "Salvar na Agenda" : "Editar Contato"}
         </button>
       </form>
       <h2>Seus contatos ({contacts.length})</h2>
