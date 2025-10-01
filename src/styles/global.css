@@ -53,6 +53,7 @@ input, textarea{
     height: 100%;
     gap: 3rem;
     flex-wrap: wrap;
+    max-height: 65dvh;
 }
 
 .card{
@@ -78,3 +79,4 @@ button:disabled{
 label{
     font-weight: bold;
 }
+

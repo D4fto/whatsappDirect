@@ -5,6 +5,7 @@
   border-radius: .5rem;
   padding: 1.5rem;
   gap: .5rem;
+  animation: opening .5s;
 }
 
 .nameAndNumberContainer{
@@ -28,4 +29,13 @@
 
 .number{
   color: var(--text-secundary);
+}
+
+@keyframes opening {
+  0%{
+    transform: scale(0%);
+  }
+  100%{
+    transform: scale(100%);
+  }
 }

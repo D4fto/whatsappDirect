@@ -4,6 +4,7 @@ import formatPhone from "../utils/formatPhone";
 import { useContext, useEffect } from "react";
 import supabase from "../services/supabase";
 import { ContactListContext } from "../contexts/ContactListContext";
+import Loader from "./Loader";
 
 
 export default function ContactList() {
@@ -24,12 +25,14 @@ export default function ContactList() {
     }
     if(contactFormState === "creating"){
       // Cria o contato no supabase
+      setContactFormState("loading")
       await supabase.createContact(contactName, number)
     } else if(contactFormState === "editing"){
       // Edita o contato no supabase
       if (contactId===-1){
         return
       }
+      setContactFormState("loading")
       await supabase.updateContact(contactId, {name: contactName, phone_number: number})
     }
     setContactNumber('')
@@ -77,7 +80,7 @@ export default function ContactList() {
         </div>
         {/* Botão pra salvar o contato na agenda */}
         <button type="submit" className={styles.button} disabled={contactNumber.replace(/\D/g,'').length<10 || contactName.length===0}>
-          <i className="bi bi-person"></i> {contactFormState === "creating" ? "Salvar na Agenda" : "Editar Contato"}
+          <i className="bi bi-person"></i> {contactFormState === "creating" ? "Salvar na Agenda" : contactFormState === "editing" ? "Editar Contato" : <Loader/>}
         </button>
       </form>
       <h2>Seus contatos ({contacts.length})</h2>
