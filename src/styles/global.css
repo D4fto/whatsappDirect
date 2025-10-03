@@ -52,7 +52,6 @@ input, textarea{
 .cards{
     height: 100%;
     gap: 3rem;
-    flex-wrap: wrap;
     max-height: 65dvh;
 }
 
@@ -80,3 +79,12 @@ label{
     font-weight: bold;
 }
 
+@media (max-width: 1200px) {
+    .cards{
+        display: block;
+        height: 100%;
+    }
+    .card{
+        margin-bottom: 3rem;
+    }
+}

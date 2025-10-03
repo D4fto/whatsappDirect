@@ -10,13 +10,24 @@ export function ContactListProvider({ children }) {
   const [contactId, setContactId] = useState(-1);
   const [contacts, setContacts] = useState([]);
   const [contactFormState, setContactFormState] = useState("creating");
+  const [contactCount, setContactCount] = useState(0)
 
-  async function fetchContacts() {
-    const { data, error } = await supabase.readContacts();
+  async function fetchContacts(page) {
+    await getContactsCount()
+    const { data, error } = await supabase.readContacts(page);
     if (error) {
       console.error(error);
     } else {
       setContacts(data);
+    }
+  }
+  async function getContactsCount() {
+    const { count, error} = await supabase.countContacts()
+    if (error) {
+      console.error(error);
+    } else {
+      console.log(count)
+      setContactCount(count);
     }
   }
 
@@ -33,6 +44,7 @@ export function ContactListProvider({ children }) {
         setContactFormState,
         contactId,
         setContactId,
+        contactCount,
       }}
     >
       {children}

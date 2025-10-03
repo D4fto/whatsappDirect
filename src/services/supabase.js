@@ -12,11 +12,21 @@ async function createContact(name, number){
     return(error)
 }
 //função para a leitura de contatos
-async function readContacts(){
+async function readContacts(page){
+    console.log(page)
     const { data, error } = await supabase
     .from('contacts')
     .select() 
+    .order('name')
+    .range(page*5, page*5+4);
     return({data, error})
+}
+//função para a contar os contatos
+async function countContacts(){
+    const { count, error } = await supabase
+    .from('contacts')
+    .select('*', { count: 'exact', head: true }) 
+    return({count, error})
 }
 //função para deletar contatos
 async function deleteContact(id){
@@ -36,4 +46,4 @@ async function updateContact(id, query){
     return(error)
 }
 
-export default {createContact, readContacts, deleteContact, updateContact}
+export default {createContact, readContacts, deleteContact, updateContact, countContacts}

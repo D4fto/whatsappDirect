@@ -1,19 +1,29 @@
 import styles from "./ContactList.module.css";
 import Contact from "./Contact";
 import formatPhone from "../utils/formatPhone";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import supabase from "../services/supabase";
 import { ContactListContext } from "../contexts/ContactListContext";
 import Loader from "./Loader";
 
 
 export default function ContactList() {
-  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId } = useContext(ContactListContext)
+  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId, contactCount } = useContext(ContactListContext)
+  const [page, setPage] = useState(0)
+  const contactPerPage = 5
+
   
   useEffect(()=>{
-    fetchContacts()
-  },[fetchContacts])
-
+    fetchContacts(page)
+  },[page])
+  
+  function handlePage(number){
+    if(number<0 || number>contactCount/contactPerPage){
+      return
+    }
+    setPage(number)
+  }
+  
   //Função para enviar o contato para o supabase
   async function submitContact (e){
     e.preventDefault() 
@@ -39,7 +49,7 @@ export default function ContactList() {
     setContactName('')
     setContactId(-1)
     setContactFormState("creating")
-    await fetchContacts()
+    await fetchContacts(page)
   }
 
   return (
@@ -83,7 +93,7 @@ export default function ContactList() {
           <i className="bi bi-person"></i> {contactFormState === "creating" ? "Salvar na Agenda" : contactFormState === "editing" ? "Editar Contato" : <Loader/>}
         </button>
       </form>
-      <h2>Seus contatos ({contacts.length})</h2>
+      <h2>Seus contatos ({contactCount})</h2>
       {/* Lista de contatos */}
       <div className={styles.contactsContainer}>
         {
@@ -92,6 +102,11 @@ export default function ContactList() {
           })
         }
         
+      </div>
+      <div className="container">
+        {page > 0 && <i className={"bi bi-arrow-left-short " + styles.pageArrow} onClick={()=>handlePage(page - 1)}></i>}
+        <input className={styles.pageNumber} type="number" value={page} onChange={(e) => handlePage(e.target.value)} disabled={contactCount <= 5}/>
+        {contactCount > 5 && <i className={"bi bi-arrow-right-short " + styles.pageArrow} onClick={()=>handlePage(page + 1)}></i>}
       </div>
     </div>
   );
