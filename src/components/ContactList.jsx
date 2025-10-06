@@ -18,7 +18,7 @@ export default function ContactList() {
   },[page])
   
   function handlePage(number){
-    if(number<0 || number>contactCount/contactPerPage){
+    if(number<0 || number>(contactCount - 1)/contactPerPage){
       return
     }
     setPage(number)
@@ -106,7 +106,7 @@ export default function ContactList() {
       <div className="container">
         {page > 0 && <i className={"bi bi-arrow-left-short " + styles.pageArrow} onClick={()=>handlePage(page - 1)}></i>}
         <input className={styles.pageNumber} type="number" value={page} onChange={(e) => handlePage(e.target.value)} disabled={contactCount <= 5}/>
-        {contactCount > 5 && <i className={"bi bi-arrow-right-short " + styles.pageArrow} onClick={()=>handlePage(page + 1)}></i>}
+        {page+1<=(contactCount - 1)/contactPerPage && <i className={"bi bi-arrow-right-short " + styles.pageArrow} onClick={()=>handlePage(page + 1)}></i>}
       </div>
     </div>
   );
