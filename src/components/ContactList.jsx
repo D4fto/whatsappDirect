@@ -57,6 +57,7 @@ export default function ContactList() {
       <h1>
         <i className="bi bi-person"></i> Agenda de Contatos
       </h1>
+        
 
       {/* Form para criação do contato */}
       <form onSubmit={submitContact} action="">
@@ -93,7 +94,13 @@ export default function ContactList() {
           <i className="bi bi-person"></i> {contactFormState === "creating" ? "Salvar na Agenda" : contactFormState === "editing" ? "Editar Contato" : <Loader/>}
         </button>
       </form>
-      <h2>Seus contatos ({contactCount})</h2>
+      <div className={`container ${styles.searchContainer}`}>
+        <h2>Seus contatos ({contactCount})</h2>
+        <div className="container">
+          <input type="text" placeholder="Nome"/>
+          <button><i className="bi bi-search"></i></button>
+        </div>
+      </div>
       {/* Lista de contatos */}
       <div className={styles.contactsContainer}>
         {
