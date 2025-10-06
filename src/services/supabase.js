@@ -13,7 +13,6 @@ async function createContact(name, number){
 }
 //função para a leitura de contatos
 async function readContacts(page){
-    console.log(page)
     const { data, error } = await supabase
     .from('contacts')
     .select() 

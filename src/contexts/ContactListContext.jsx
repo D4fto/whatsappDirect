@@ -11,6 +11,7 @@ export function ContactListProvider({ children }) {
   const [contacts, setContacts] = useState([]);
   const [contactFormState, setContactFormState] = useState("creating");
   const [contactCount, setContactCount] = useState(0)
+  const [page, setPage] = useState(0)
 
   async function fetchContacts(page) {
     await getContactsCount()
@@ -26,7 +27,6 @@ export function ContactListProvider({ children }) {
     if (error) {
       console.error(error);
     } else {
-      console.log(count)
       setContactCount(count);
     }
   }
@@ -45,6 +45,8 @@ export function ContactListProvider({ children }) {
         contactId,
         setContactId,
         contactCount,
+        page,
+        setPage
       }}
     >
       {children}

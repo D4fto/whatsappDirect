@@ -7,12 +7,12 @@ import { useContext } from "react";
 
 export default function Contact({ id, name, phoneNumber, fetchContacts }) {
   const { setPhoneNumber } = useContext(LinkGeneratorContext)
-  const { setContactName, setContactNumber, setContactId, setContactFormState} = useContext(ContactListContext)
+  const { setContactName, setContactNumber, setContactId, setContactFormState, page} = useContext(ContactListContext)
   
 
   async function deleteContact(id) {
     await supabase.deleteContact(id)
-    await fetchContacts()
+    await fetchContacts(page)
   }
   async function handleEditContact() {
     setContactName(name)

@@ -8,8 +8,8 @@ import Loader from "./Loader";
 
 
 export default function ContactList() {
-  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId, contactCount } = useContext(ContactListContext)
-  const [page, setPage] = useState(0)
+  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId, contactCount, page, setPage } = useContext(ContactListContext)
+  
   const contactPerPage = 5
 
   
