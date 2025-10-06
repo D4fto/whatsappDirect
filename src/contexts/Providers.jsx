@@ -4,10 +4,7 @@ import { ContactListProvider } from "./ContactListContext";
 export function Providers({ children }) {
   return (
     <ContactListProvider>
-      <LinkGeneratorProvider>
-        {children}
-      </LinkGeneratorProvider>
+      <LinkGeneratorProvider>{children}</LinkGeneratorProvider>
     </ContactListProvider>
-
   );
 }

@@ -6,19 +6,25 @@ import { ContactListContext } from "../contexts/ContactListContext";
 import { useContext } from "react";
 
 export default function Contact({ id, name, phoneNumber, fetchContacts }) {
-  const { setPhoneNumber } = useContext(LinkGeneratorContext)
-  const { setContactName, setContactNumber, setContactId, setContactFormState, page, search} = useContext(ContactListContext)
-  
+  const { setPhoneNumber } = useContext(LinkGeneratorContext);
+  const {
+    setContactName,
+    setContactNumber,
+    setContactId,
+    setContactFormState,
+    page,
+    search,
+  } = useContext(ContactListContext);
 
   async function deleteContact(id) {
-    await supabase.deleteContact(id)
-    await fetchContacts(page, search)
+    await supabase.deleteContact(id);
+    await fetchContacts(page, search);
   }
   async function handleEditContact() {
-    setContactName(name)
-    setContactNumber(formatPhone(phoneNumber))
-    setContactId(id)
-    setContactFormState("editing")
+    setContactName(name);
+    setContactNumber(formatPhone(phoneNumber));
+    setContactId(id);
+    setContactFormState("editing");
   }
 
   return (
@@ -27,9 +33,11 @@ export default function Contact({ id, name, phoneNumber, fetchContacts }) {
         <p className={styles.name}>{name}</p>
         <p className={styles.number}>{formatPhone(phoneNumber)}</p>
       </div>
-      <button onClick={()=>setPhoneNumber(formatPhone(phoneNumber))}>Mensagem</button>
+      <button onClick={() => setPhoneNumber(formatPhone(phoneNumber))}>
+        Mensagem
+      </button>
       <button onClick={handleEditContact}>Editar</button>
-      <button onClick={()=>deleteContact(id)}>
+      <button onClick={() => deleteContact(id)}>
         <i className="bi bi-trash3"></i>
       </button>
     </div>

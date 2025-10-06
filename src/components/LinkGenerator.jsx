@@ -5,7 +5,7 @@ import formatPhone from "../utils/formatPhone";
 import CopyButton from "./CopyButton";
 
 export default function LinkGenerator() {
-  const { phoneNumber, setPhoneNumber } = useContext(LinkGeneratorContext)
+  const { phoneNumber, setPhoneNumber } = useContext(LinkGeneratorContext);
   const [message, setMessage] = useState("");
   const [link, setLink] = useState("");
 
@@ -15,23 +15,22 @@ export default function LinkGenerator() {
   }
 
   // Função para gerar o link de envio ao whatsapp
-  function generateLink(e){
-    e.preventDefault()
+  function generateLink(e) {
+    e.preventDefault();
     // Deixa apenas os números do telefone
-    let number = phoneNumber.replace(/\D/g, '')
+    let number = phoneNumber.replace(/\D/g, "");
     // Codifica a mensagem para ser usada na url
-    let encodedMessage = encodeURIComponent(message)
+    let encodedMessage = encodeURIComponent(message);
 
     //se o numero de telefone for menor que 10, para a função
-    if (number.length < 10){
-      return
+    if (number.length < 10) {
+      return;
     }
-    if (encodedMessage.length === 0){
-      setLink(`https://wa.me/55${number}`)
-      return
+    if (encodedMessage.length === 0) {
+      setLink(`https://wa.me/55${number}`);
+      return;
     }
-    setLink(`https://wa.me/55${number}?text=${encodedMessage}`)
-
+    setLink(`https://wa.me/55${number}?text=${encodedMessage}`);
   }
 
   return (
@@ -66,10 +65,14 @@ export default function LinkGenerator() {
             id="message"
             placeholder="Digite sua mensagem aqui..."
             value={message}
-            onChange={e =>setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
           ></textarea>
         </div>
-        <button type="submit" className={styles.button} disabled={phoneNumber.replace(/\D/g, '').length<10}>
+        <button
+          type="submit"
+          className={styles.button}
+          disabled={phoneNumber.replace(/\D/g, "").length < 10}
+        >
           <i className="bi bi-chat"></i> Preparar Mensagem
         </button>
       </form>
@@ -85,10 +88,16 @@ export default function LinkGenerator() {
             disabled
           />
           {/* Botão para copiar o link */}
-          <CopyButton str={link}/>
+          <CopyButton str={link} />
         </div>
         {/* Botão para redirecionar para o link gerado */}
-        <button onClick={()=>{window.open(link,'_blank')}} disabled ={link.length===0} className={styles.button}>
+        <button
+          onClick={() => {
+            window.open(link, "_blank");
+          }}
+          disabled={link.length === 0}
+          className={styles.button}
+        >
           <i className="bi bi-chat"></i> Abrir WhatsApp
         </button>
       </div>
