@@ -12,10 +12,12 @@ async function createContact(name, number){
     return(error)
 }
 //função para a leitura de contatos
-async function readContacts(page){
+async function readContacts(page, search=""){
+    console.log(search)
     const { data, error } = await supabase
     .from('contacts')
     .select() 
+    .like("name",`%${search}%`)
     .order('name')
     .range(page*5, page*5+4);
     return({data, error})

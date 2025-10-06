@@ -12,10 +12,11 @@ export function ContactListProvider({ children }) {
   const [contactFormState, setContactFormState] = useState("creating");
   const [contactCount, setContactCount] = useState(0)
   const [page, setPage] = useState(0)
+  const [search, setSearch] = useState("")
 
-  async function fetchContacts(page) {
+  async function fetchContacts(page, search='') {
     await getContactsCount()
-    const { data, error } = await supabase.readContacts(page);
+    const { data, error } = await supabase.readContacts(page, search);
     if (error) {
       console.error(error);
     } else {
@@ -46,7 +47,9 @@ export function ContactListProvider({ children }) {
         setContactId,
         contactCount,
         page,
-        setPage
+        setPage,
+        search,
+        setSearch
       }}
     >
       {children}

@@ -8,20 +8,29 @@ import Loader from "./Loader";
 
 
 export default function ContactList() {
-  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId, contactCount, page, setPage } = useContext(ContactListContext)
+  const { contactName, setContactName, contactNumber, setContactNumber, contacts, fetchContacts, contactFormState, setContactFormState, contactId, setContactId, contactCount, page, setPage, search, setSearch } = useContext(ContactListContext)
   
   const contactPerPage = 5
+  const [localSearch, setLocalSearch] = useState("")
 
   
   useEffect(()=>{
-    fetchContacts(page)
-  },[page])
+    fetchContacts(page, search)
+  },[page, search])
   
   function handlePage(number){
     if(number<0 || number>(contactCount - 1)/contactPerPage){
       return
     }
     setPage(number)
+  }
+
+  function submitSearch (e){
+    e.preventDefault()
+    setSearch(localSearch)
+    
+    setPage(0)
+    
   }
   
   //Função para enviar o contato para o supabase
@@ -49,7 +58,7 @@ export default function ContactList() {
     setContactName('')
     setContactId(-1)
     setContactFormState("creating")
-    await fetchContacts(page)
+    await fetchContacts(page, search)
   }
 
   return (
@@ -96,10 +105,10 @@ export default function ContactList() {
       </form>
       <div className={`container ${styles.searchContainer}`}>
         <h2>Seus contatos ({contactCount})</h2>
-        <div className="container">
-          <input type="text" placeholder="Nome"/>
-          <button><i className="bi bi-search"></i></button>
-        </div>
+        <form className="container" onSubmit={submitSearch}>
+          <input type="text" placeholder="Nome" value={localSearch} onChange={(e)=>{setLocalSearch(e.target.value)}}/>
+          <button type="submit"><i className="bi bi-search"></i></button>
+        </form>
       </div>
       {/* Lista de contatos */}
       <div className={styles.contactsContainer}>
