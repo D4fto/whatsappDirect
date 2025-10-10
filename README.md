@@ -112,7 +112,6 @@ Objetivo:
 
 - **Frontend:** React.js, JavaScript, CSS Modules  
 - **Hospedagem:** [Vercel](https://vercel.com/)  
-- **Gerenciamento de Estado Local:** LocalStorage  
 - **Controle de Versão:** Git + GitHub
 
 ---
