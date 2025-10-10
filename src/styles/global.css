@@ -88,3 +88,12 @@ label{
         margin-bottom: 3rem;
     }
 }
+@media (max-width: 600px) {
+    html{
+        font-size: 45%;
+    }
+     
+    .subTitle{
+        max-width: 80%;
+    }
+}
