@@ -64,7 +64,7 @@ Siga os passos abaixo para configurar corretamente:
 | `name`         | `text`       | Nome do contato                  |
 | `phone_number` | `text`       | Número de telefone do contato    |
 | `created_at` | `TIMESTAMP`       | Coluna criada automaticamente    |
-|
+
 
 5. Marque a coluna **`id`** como **Primary Key** e habilite a opção **Auto Increment**.
 
