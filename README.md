@@ -37,7 +37,7 @@ Certifique-se de ter instalado:
 - Um editor de texto, como o [VS Code](https://code.visualstudio.com/)
 
 ### 📥 Clonar o Repositório
-```bash
+```git
 git clone https://github.com/D4fto/whatsappDirect.git
 ```
 
